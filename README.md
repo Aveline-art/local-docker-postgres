@@ -4,6 +4,30 @@ This is a simple docker compose setup to create a temporary database using docke
 
 1. Copy everything from config_templates onto the root directory.
 
+```shell
+cp -r ./config_templates/{.,}* .
 ```
-cp config_templates/.* .
+
+2. Fill in information in the newly copied over `.env` file from the database containing the data you would like to copy to your local.
+
+3. Run docker compose.
+
+```shell
+# This might cause errors if you exit and run it a second time. If the errors indicate that a pg_restore had already been done previously, this is mostly harmless.
+docker compose up
+
+# Alternately, you can just run to prevent pg_restore from rerunning.
+docker compose up temp_instance
+```
+
+4. Optionally, you can view the database in pgadmin by connecting to this server using the credentials supplied in `.env`. The following assumes you did not modify the defaults from `.env`:
+
+```python
+Name: anything you'd like
+Host name/addess: localhost
+Port: 5432
+# must be the same as CLOUD_DBNAME
+Maintainence database:
+Username: username
+Password: password
 ```

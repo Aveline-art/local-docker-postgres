@@ -11,3 +11,23 @@ services:
     expose:
       - ${PORT}
     container_name: ${CONTAINER_NAME}
+  db_backup:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - TAG=${TAG}
+    environment:
+      CLOUD_DBHOST: ${CLOUD_DBHOST}
+      CLOUD_DBPORT: ${CLOUD_DBPORT}
+      CLOUD_DBUSER: ${CLOUD_DBUSER}
+      CLOUD_DB_PASSWORD: ${CLOUD_DBPASSWORD}
+      CLOUD_DBNAME: ${CLOUD_DBNAME}
+      CLOUD_DBSCHEMA: ${CLOUD_DBSCHEMA}
+      POSTGRES_PORT: ${PORT}
+      POSTGRES_USER: ${USERNAME}
+      POSTGRES_PASSWORD: ${PASSWORD}
+      POSTGRES_DB: ${DBNAME}
+    depends_on:
+      - temp_instance
+    container_name: db_backup
