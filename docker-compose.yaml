@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  temp_instance:
+    image: postgres:${TAG}
+    environment:
+      POSTGRES_USER: ${USERNAME}
+      POSTGRES_PASSWORD: ${PASSWORD}
+      POSTGRES_DB: ${DBNAME}
+    ports:
+      - ${PORT}:${PORT}
+    expose:
+      - ${PORT}
+    container_name: ${CONTAINER_NAME}
