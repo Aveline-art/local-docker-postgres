@@ -11,6 +11,6 @@ sleep 5
 
 # restore the db into the local postgres instance.
 PGPASSWORD=${POSTGRES_PASSWORD} 
-pg_restore --create -d ${POSTGRES_DB} --clean --no-acl --no-owner -h temp_instance -p ${POSTGRES_PORT} -U ${POSTGRES_USER} ./db-data-dump.pgdump
+pg_restore -d ${POSTGRES_DB} --clean --no-acl --no-owner -h temp_instance -p ${POSTGRES_PORT} -U ${POSTGRES_USER} ./db-data-dump.pgdump
 
 echo "Database restored successfully"
